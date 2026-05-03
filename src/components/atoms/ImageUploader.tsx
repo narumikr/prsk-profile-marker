@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export function ImageUploader() {
+export const ImageUploader = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -46,4 +46,4 @@ export function ImageUploader() {
       </button>
     </>
   );
-}
+};

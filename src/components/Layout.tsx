@@ -5,7 +5,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-export function Layout({ children }: LayoutProps) {
+export const Layout = ({ children }: LayoutProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -15,9 +15,9 @@ export function Layout({ children }: LayoutProps) {
         <p>メニュー</p>
       </SideMenu>
       <div
-        className={`transition-[margin-left,width] duration-300 ease-out ${isOpen ? 'ml-[250px] w-[calc(100vw-250px)]' : 'ml-[60px] w-[calc(100vw-60px)]'}`}>
+        className={`transition-[margin-left,width] duration-300 ease-out ${isOpen ? 'ml-62.5 w-[calc(100vw-250px)]' : 'ml-15 w-[calc(100vw-60px)]'}`}>
         {children}
       </div>
     </>
   );
-}
+};
