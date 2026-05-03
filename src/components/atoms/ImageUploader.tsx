@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const ImageUploader = () => {
+interface ImageUploaderProps {
+  shape?: 'rectangle' | 'circle';
+}
+
+export const ImageUploader = ({ shape = 'rectangle' }: ImageUploaderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -30,14 +34,16 @@ export const ImageUploader = () => {
     setPreviewUrl(nextUrl);
   };
 
+  const isCircle = shape === 'circle';
+  const buttonClassName = isCircle
+    ? 'mx-auto flex h-48 w-48 cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-dashed border-sky-400/80 bg-gray-400 shadow-lg shadow-black/30 backdrop-blur-sm transition hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-300/90'
+    : 'mx-auto flex aspect-video w-full max-w-3xl cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-sky-400/80 bg-gray-400 shadow-lg shadow-black/30 backdrop-blur-sm transition hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-300/90';
+
   return (
     <>
       <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleSelectImage} />
 
-      <button
-        type="button"
-        onClick={openFileDialog}
-        className="mx-auto flex aspect-video w-full max-w-3xl cursor-pointer items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-sky-400/80 bg-gray-400 shadow-lg shadow-black/30 backdrop-blur-sm transition hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-300/90">
+      <button type="button" onClick={openFileDialog} className={buttonClassName}>
         {previewUrl ? (
           <img src={previewUrl} alt="選択した画像" className="h-full w-full object-cover" />
         ) : (
