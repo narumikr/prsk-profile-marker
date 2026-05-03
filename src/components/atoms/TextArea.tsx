@@ -8,7 +8,10 @@ export const TextArea = () => {
         <NamePlate text={TextAreaText.title} className="w-48" />
       </div>
       <div className="min-h-0 flex-1 rounded border border-miku px-3 pb-3 pt-4">
-        <textarea className="h-full min-h-0 resize-none rounded border-0 px-2 py-1 font-bold outline-none focus:border-0 focus:outline-none focus:ring-0" />
+        <textarea
+          aria-label={TextAreaText.title}
+          className="h-full min-h-0 resize-none rounded border-0 px-2 py-1 font-bold outline-none focus:border-0 focus:outline-none focus:ring-0"
+        />
       </div>
     </div>
   );

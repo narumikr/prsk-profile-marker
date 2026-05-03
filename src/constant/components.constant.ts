@@ -2,7 +2,7 @@
  * @description ImageUploaderのテキスト定数
  */
 export const ImageUploaderText = {
-  'selected-alt': '選択した画像',
+  selectedAlt: '選択した画像',
 } as const;
 
 /**

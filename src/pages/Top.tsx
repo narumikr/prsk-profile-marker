@@ -11,11 +11,15 @@ export function Top() {
 
   const handleDownload = async () => {
     if (!profileRef.current) return;
-    const dataUrl = await toPng(profileRef.current);
-    const link = document.createElement('a');
-    link.download = TOP_PAGE_TEXT.profileFileName;
-    link.href = dataUrl;
-    link.click();
+    try {
+      const dataUrl = await toPng(profileRef.current);
+      const link = document.createElement('a');
+      link.download = TOP_PAGE_TEXT.profileFileName;
+      link.href = dataUrl;
+      link.click();
+    } catch (error) {
+      console.error(TOP_PAGE_TEXT.genImageErrorLog, error);
+    }
   };
 
   return (
