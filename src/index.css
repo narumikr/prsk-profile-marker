@@ -1,1 +1,13 @@
 @import 'tailwindcss';
+
+.text-miku {
+  color: #33ccba;
+}
+
+.bg-miku {
+  background-color: #33ccba;
+}
+
+.border-miku {
+  border-color: #33ccba;
+}
