@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { DropdownText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
@@ -20,11 +20,27 @@ export const Dropdown = ({ title, options, onSelect }: DropdownProps) => {
   const { border, ring } = useSekaiColor();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<DropdownOption | null>(null);
+  const [menuPosition, setMenuPosition] = useState<React.CSSProperties>({});
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);
 
+  const calculateMenuPosition = useCallback(() => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    const base = { position: 'fixed' as const, left: rect.left, width: rect.width };
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    if (spaceBelow < ESTIMATED_MENU_HEIGHT && spaceAbove > spaceBelow) {
+      setMenuPosition({ ...base, bottom: window.innerHeight - rect.top + 4 });
+    } else {
+      setMenuPosition({ ...base, top: rect.bottom + 4 });
+    }
+  }, []);
+
   useEffect(() => {
     if (!isOpen) return;
+
+    calculateMenuPosition();
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -32,21 +48,16 @@ export const Dropdown = ({ title, options, onSelect }: DropdownProps) => {
       setIsOpen(false);
     };
 
+    window.addEventListener('scroll', calculateMenuPosition, true);
+    window.addEventListener('resize', calculateMenuPosition);
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
 
-  const getMenuStyle = (): React.CSSProperties => {
-    if (!buttonRef.current) return {};
-    const rect = buttonRef.current.getBoundingClientRect();
-    const base = { position: 'fixed' as const, left: rect.left, width: rect.width };
-    const spaceBelow = window.innerHeight - rect.bottom;
-    const spaceAbove = rect.top;
-    if (spaceBelow < ESTIMATED_MENU_HEIGHT && spaceAbove > spaceBelow) {
-      return { ...base, bottom: window.innerHeight - rect.top + 4 };
-    }
-    return { ...base, top: rect.bottom + 4 };
-  };
+    return () => {
+      window.removeEventListener('scroll', calculateMenuPosition, true);
+      window.removeEventListener('resize', calculateMenuPosition);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, calculateMenuPosition]);
 
   const handleSelect = (option: DropdownOption) => {
     setSelectedOption(option);
@@ -70,8 +81,8 @@ export const Dropdown = ({ title, options, onSelect }: DropdownProps) => {
         createPortal(
           <ul
             ref={menuRef}
-            style={getMenuStyle()}
-            className={`z-9999 max-h-60 overflow-y-auto rounded border ${border} bg-white text-black shadow-lg`}>
+            style={menuPosition}
+            className={`z-[9999] max-h-60 overflow-y-auto rounded border ${border} bg-white text-black shadow-lg`}>
             {options.map((option) => (
               <li key={option.value}>
                 <button
