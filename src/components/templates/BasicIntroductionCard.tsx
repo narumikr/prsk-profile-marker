@@ -5,8 +5,8 @@ import { Gallery } from '@/components/molecules/Gallery';
 import { TOP_PAGE_TEXT } from '@/constant/pages.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
 
-const CARD_WIDTH = 960;
-const CARD_HEIGHT = 540;
+export const CARD_WIDTH = 960;
+export const CARD_HEIGHT = 540;
 
 export const BasicIntroductionCard = forwardRef<HTMLDivElement>((_, ref) => {
   const { border } = useSekaiColor();
@@ -24,7 +24,7 @@ export const BasicIntroductionCard = forwardRef<HTMLDivElement>((_, ref) => {
   }, []);
 
   return (
-    <div ref={wrapperRef} className="w-full max-w-[960px]" style={{ height: CARD_HEIGHT * scale }}>
+    <div ref={wrapperRef} className="w-full max-w-240" style={{ height: CARD_HEIGHT * scale }}>
       <div
         ref={ref}
         style={{
@@ -50,3 +50,5 @@ export const BasicIntroductionCard = forwardRef<HTMLDivElement>((_, ref) => {
     </div>
   );
 });
+
+BasicIntroductionCard.displayName = 'BasicIntroductionCard';
