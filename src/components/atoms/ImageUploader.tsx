@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ImageUploaderText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
 
@@ -10,30 +10,36 @@ export const ImageUploader = ({ shape = 'rectangle' }: ImageUploaderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
-    };
-  }, [previewUrl]);
+  const readFileAsDataUrl = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          resolve(reader.result);
+          return;
+        }
+        reject(new Error('画像データの読み込み結果が不正です'));
+      };
+      reader.onerror = () => reject(reader.error ?? new Error('画像データの読み込みに失敗しました'));
+      reader.readAsDataURL(file);
+    });
 
   const openFileDialog = () => {
     inputRef.current?.click();
   };
 
-  const handleSelectImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelectImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {
       return;
     }
 
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
+    try {
+      const nextUrl = await readFileAsDataUrl(file);
+      setPreviewUrl(nextUrl);
+    } catch (error) {
+      console.error('画像プレビューの生成に失敗しました', error);
     }
-
-    const nextUrl = URL.createObjectURL(file);
-    setPreviewUrl(nextUrl);
     event.target.value = '';
   };
 
