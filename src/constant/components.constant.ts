@@ -32,4 +32,5 @@ export const GalleryText = {
 export const SideMenuText = {
   sekaiTheme: 'セカイテーマ',
   fontFamily: '文字フォント',
+  cardType: 'カード種類',
 } as const;
