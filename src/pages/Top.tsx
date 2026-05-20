@@ -35,9 +35,10 @@ export function Top() {
     };
 
     try {
-      // 1回目: html-to-image内部のSVGクローンに画像をキャッシュさせる
+      // html-to-imageはブラウザキャッシュとは別に画像を内部でre-fetchする。
+      // モバイルでは処理が遅くfetch完了前にcanvasが描画されて白化する問題が確認されている。
+      // 1回目で内部キャッシュを温め、2回目で確実にキャプチャするworkaround。
       await toPng(el, options);
-      // 2回目: キャッシュ済みの状態で確実にキャプチャ
       const dataUrl = await toPng(el, options);
       const link = document.createElement('a');
       link.download = TOP_PAGE_TEXT.profileFileName;
