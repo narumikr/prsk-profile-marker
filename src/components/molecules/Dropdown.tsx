@@ -16,13 +16,16 @@ interface DropdownOption {
 interface DropdownProps {
   title: string;
   options: DropdownOption[];
+  defaultValue?: string;
   onSelect?: (value: string) => void;
 }
 
-export const Dropdown = ({ title, options, onSelect }: DropdownProps) => {
+export const Dropdown = ({ title, options, defaultValue, onSelect }: DropdownProps) => {
   const { border, ring } = useSekaiColor();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<DropdownOption | null>(null);
+  const [selectedOption, setSelectedOption] = useState<DropdownOption | null>(
+    () => options.find((o) => o.value === defaultValue) ?? null,
+  );
   const [menuPosition, setMenuPosition] = useState<React.CSSProperties>({});
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLUListElement>(null);

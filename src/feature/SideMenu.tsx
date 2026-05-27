@@ -22,8 +22,18 @@ export const SideMenu = ({ isOpen, onClick, onFontChange }: SideMenuProps) => {
 
   return (
     <SekaiSideMenu open={isOpen} onClick={onClick}>
-      <Dropdown title={SideMenuText.sekaiTheme} options={OshiDropdownItem} onSelect={handleSwitchSekai} />
-      <Dropdown title={SideMenuText.fontFamily} options={FontFamily} onSelect={onFontChange} />
+      <Dropdown
+        title={SideMenuText.sekaiTheme}
+        options={OshiDropdownItem}
+        onSelect={handleSwitchSekai}
+        defaultValue={OshiDropdownItem[0].value}
+      />
+      <Dropdown
+        title={SideMenuText.fontFamily}
+        options={FontFamily}
+        onSelect={onFontChange}
+        defaultValue={FontFamily[0].value}
+      />
     </SekaiSideMenu>
   );
 };
