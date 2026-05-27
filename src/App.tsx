@@ -1,6 +1,6 @@
 import { COLORS_SEKAI_KEYS, createSekai, LIGHT_MODE, YourSekaiProvider } from '@naru/untitled-ui-library';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Layout } from './components/Layout';
+import { Layout } from './feature/Layout';
 import { NotFound } from './pages/NotFound';
 import { Top } from './pages/Top';
 

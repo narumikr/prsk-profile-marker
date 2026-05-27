@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 import { InputForm } from '@/components/atoms/InputForm';
 import { TextArea } from '@/components/atoms/TextArea';
 import { Gallery } from '@/components/molecules/Gallery';
-import { TOP_PAGE_TEXT } from '@/constant/pages.constant';
+import { BasicIntroductionCardText } from '@/constant/cards.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
 
 export const CARD_WIDTH = 960;
@@ -34,10 +34,10 @@ export const BasicIntroductionCard = forwardRef<HTMLDivElement>((_, ref) => {
           transformOrigin: 'top left',
         }}
         className={`bg-white border ${border} p-4`}>
-        <p className="text-2xl font-bold">プロセカ自己紹介カード</p>
+        <p className="text-2xl font-bold">{BasicIntroductionCardText.cardTitle}</p>
         <div className="flex gap-4">
           <div style={{ width: 400 }}>
-            {TOP_PAGE_TEXT.inputLabels.map((label) => (
+            {BasicIntroductionCardText.inputLabels.map((label) => (
               <InputForm key={label} label={label} />
             ))}
           </div>

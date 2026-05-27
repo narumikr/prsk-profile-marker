@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
-import { ImageUploaderText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
+
+const ImageUploaderText = {
+  selectedAlt: '選択した画像',
+  imageReadErrorLog: '画像の読み込みに失敗しました',
+} as const;
 
 interface ImageUploaderProps {
   shape?: 'rectangle' | 'circle';
