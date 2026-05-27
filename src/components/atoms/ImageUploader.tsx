@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
 
 const ImageUploaderText = {
   selectedAlt: '選択した画像',
+  imageReadErrorLog: '画像の読み込みに失敗しました',
 } as const;
 
 interface ImageUploaderProps {
@@ -12,14 +13,6 @@ interface ImageUploaderProps {
 export const ImageUploader = ({ shape = 'rectangle' }: ImageUploaderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
-    };
-  }, [previewUrl]);
 
   const openFileDialog = () => {
     inputRef.current?.click();
@@ -31,12 +24,16 @@ export const ImageUploader = ({ shape = 'rectangle' }: ImageUploaderProps) => {
       return;
     }
 
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-    }
-
-    const nextUrl = URL.createObjectURL(file);
-    setPreviewUrl(nextUrl);
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        setPreviewUrl(reader.result);
+      }
+    };
+    reader.onerror = () => {
+      console.error(ImageUploaderText.imageReadErrorLog, file.name, reader.error);
+    };
+    reader.readAsDataURL(file);
     event.target.value = '';
   };
 
