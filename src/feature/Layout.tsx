@@ -1,6 +1,6 @@
 import { SekaiBackground } from '@naru/untitled-ui-library';
 import { useState } from 'react';
-import { SideMenu } from '@/components/organisms/SideMenu';
+import { SideMenu } from '@/feature/SideMenu';
 
 type LayoutProps = {
   children: React.ReactNode;

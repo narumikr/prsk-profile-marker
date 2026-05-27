@@ -1,7 +1,11 @@
 import { type ColorsSekaiKey, SideMenu as SekaiSideMenu, useCreateSekai } from '@naru/untitled-ui-library';
 import { Dropdown } from '@/components/molecules/Dropdown';
-import { SideMenuText } from '@/constant/components.constant';
 import { FontFamily, OshiDropdownItem } from '@/constant/sidemenu.constants';
+
+const SideMenuText = {
+  sekaiTheme: 'セカイテーマ',
+  fontFamily: '文字フォント',
+} as const;
 
 interface SideMenuProps {
   isOpen: boolean;

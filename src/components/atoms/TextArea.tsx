@@ -1,6 +1,9 @@
 import { NamePlate } from '@naru/untitled-ui-library';
-import { TextAreaText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
+
+const TextAreaText = {
+  title: 'フリースペース',
+} as const;
 
 export const TextArea = () => {
   const { border } = useSekaiColor();

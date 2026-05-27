@@ -1,8 +1,8 @@
 import { BasicButton } from '@naru/untitled-ui-library';
 import { toPng } from 'html-to-image';
 import { useRef } from 'react';
-import { BasicIntroductionCard, CARD_HEIGHT, CARD_WIDTH } from '@/components/templates/BasicIntroductionCard';
 import { TOP_PAGE_TEXT } from '@/constant/pages.constant';
+import { BasicIntroductionCard, CARD_HEIGHT, CARD_WIDTH } from '@/feature/cards/BasicIntroductionCard';
 
 export function Top() {
   const profileRef = useRef<HTMLDivElement>(null);

@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { DropdownText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
+
+const DropdownText = {
+  placeholder: '選択してください',
+} as const;
 
 const ESTIMATED_MENU_HEIGHT = 240;
 

@@ -1,7 +1,10 @@
 import { NamePlate } from '@naru/untitled-ui-library';
 import { ImageUploader } from '@/components/atoms/ImageUploader';
-import { GalleryText } from '@/constant/components.constant';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
+
+const GalleryText = {
+  title: 'ギャラリー',
+} as const;
 
 const GALLERY_IMAGES = [1, 2, 3, 4] as const;
 
