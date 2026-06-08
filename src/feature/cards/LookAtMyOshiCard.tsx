@@ -9,18 +9,18 @@ export const LOOK_AT_MY_OSHI_CARD_HEIGHT = 540;
 
 const CENTER_X = LOOK_AT_MY_OSHI_CARD_WIDTH / 2;
 const CENTER_Y = LOOK_AT_MY_OSHI_CARD_HEIGHT / 2;
-const ORBIT_RX = 260;
+const ORBIT_RX = 280;
 const ORBIT_RY = 220;
 const FIELD_WIDTH = 220;
-const FIELD_HEIGHT = 72;
+const FIELD_HEIGHT = 84;
 const IMAGE_RADIUS = 128;
 
-function getPositions(labels: string[], startDeg: number, stepDeg: number) {
+function getPositions(labels: string[], startDeg: number, stepDeg: number, yOffsets: number[] = []) {
   return labels.map((label, i) => {
     const angle = ((startDeg + stepDeg * i) * Math.PI) / 180;
     const cx = CENTER_X + ORBIT_RX * Math.cos(angle);
     const cy = CENTER_Y + ORBIT_RY * Math.sin(angle);
-    return { label, left: cx - FIELD_WIDTH / 2, top: cy - FIELD_HEIGHT / 2 };
+    return { label, left: cx - FIELD_WIDTH / 2, top: cy - FIELD_HEIGHT / 2 + (yOffsets[i] ?? 0) };
   });
 }
 
@@ -39,8 +39,8 @@ export const LookAtMyOshiCard = forwardRef<HTMLDivElement>((_, ref) => {
     return () => observer.disconnect();
   }, []);
 
-  const leftFields = getPositions(LookAtMyOshiCardText.leftLabels, 240, -30);
-  const rightFields = getPositions(LookAtMyOshiCardText.rightLabels, 300, 30);
+  const leftFields = getPositions(LookAtMyOshiCardText.leftLabels, 240, -30, [0, 10, 0, -10]);
+  const rightFields = getPositions(LookAtMyOshiCardText.rightLabels, 300, 30, [0, 10, 0, -10]);
 
   return (
     <div ref={wrapperRef} className="w-full max-w-240" style={{ height: LOOK_AT_MY_OSHI_CARD_HEIGHT * scale }}>
