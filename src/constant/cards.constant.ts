@@ -7,6 +7,6 @@ export const BasicIntroductionCardText = {
 };
 
 export const LookAtMyOshiCardText = {
-  leftLabels: ['キャラ名', 'ユニット', '声優/CV', '誕生日', '好きなカード'],
-  rightLabels: ['いつから推してる', '好きな楽曲', '好きなシーン', '推しへの一言', '推しポイント'],
+  leftLabels: ['推しの名前', '誕生日', '好きな髪型', '好きな衣装', '推し x 3DMV'],
+  rightLabels: ['好きなカード', '好きなストーリー', 'きっかけ', '推しポイント', 'もっと推しポイント'],
 };

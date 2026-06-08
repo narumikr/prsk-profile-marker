@@ -9,9 +9,9 @@ export const LOOK_AT_MY_OSHI_CARD_HEIGHT = 540;
 
 const CENTER_X = LOOK_AT_MY_OSHI_CARD_WIDTH / 2;
 const CENTER_Y = LOOK_AT_MY_OSHI_CARD_HEIGHT / 2;
-const ORBIT_RX = 250;
+const ORBIT_RX = 260;
 const ORBIT_RY = 220;
-const FIELD_WIDTH = 180;
+const FIELD_WIDTH = 220;
 const FIELD_HEIGHT = 72;
 const IMAGE_RADIUS = 128;
 
