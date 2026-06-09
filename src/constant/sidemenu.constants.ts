@@ -53,8 +53,13 @@ export const FontFamily = [
   { label: 'Noto Sans JP', value: 'Noto Sans JP, sans-serif' },
   { label: 'Roboto', value: 'Roboto, sans-serif' },
   { label: 'Sawarabi Gothic', value: 'Sawarabi Gothic, sans-serif' },
-  // 可愛い系
+  // 手書き系
   { label: 'Yomogi', value: 'Yomogi, sans-serif' },
+  { label: 'Yusei Magic', value: 'Yusei Magic, sans-serif' },
+  { label: 'Zen Maru Gothic', value: 'Zen Maru Gothic, sans-serif' },
+  { label: 'Hachi Maru Pop', value: 'Hachi Maru Pop, cursive' },
+  { label: 'Kaisei HarunoUmi', value: 'Kaisei HarunoUmi, serif' },
+  // 可愛い系
   { label: 'Shantell Sans', value: 'Shantell Sans, sans-serif' },
   // かっこいい系
   { label: 'Zen Kurenaido', value: 'Zen Kurenaido, sans-serif' },
