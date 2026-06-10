@@ -20,7 +20,7 @@ export const Layout = ({ children }: LayoutProps) => {
         isOpen={isOpen}
         onClick={() => setIsOpen((prev) => !prev)}
         onFontChange={setFontFamily}
-        onCardTypeChange={(v) => setCardType(v as CardTypeValue)}
+        onCardTypeChange={setCardType}
       />
       <div
         style={fontFamily ? ({ '--content-font': fontFamily } as React.CSSProperties) : undefined}
