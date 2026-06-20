@@ -1,7 +1,7 @@
 import { BasicButton } from '@naru/untitled-ui-library';
 import { toPng } from 'html-to-image';
 import { useRef } from 'react';
-import { CARD_HEIGHT, CARD_WIDTH } from '@/constant/cards.constant';
+import { CARD_HEIGHT, CARD_WIDTH, OFFICIAL_CARD_HEIGHT, OFFICIAL_CARD_WIDTH } from '@/constant/cards.constant';
 import { TOP_PAGE_TEXT } from '@/constant/pages.constant';
 import { BasicCardType, LookAtMyOshiCardType, OfficialProfileCardType } from '@/constant/sidemenu.constants';
 import { useCardType } from '@/context/CardTypeContext';
@@ -32,10 +32,11 @@ export function Top() {
         ),
     );
 
+    const isOfficial = cardType === OfficialProfileCardType;
     const options = {
       style: { transform: 'none', transformOrigin: 'top left' },
-      width: CARD_WIDTH,
-      height: CARD_HEIGHT,
+      width: isOfficial ? OFFICIAL_CARD_WIDTH : CARD_WIDTH,
+      height: isOfficial ? OFFICIAL_CARD_HEIGHT : CARD_HEIGHT,
       pixelRatio: 2,
       skipFonts: true,
     };
@@ -56,10 +57,10 @@ export function Top() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6">
+    <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 py-8">
       {cardType === BasicCardType && <BasicIntroductionCard ref={profileRef} />}
       {cardType === LookAtMyOshiCardType && <LookAtMyOshiCard ref={profileRef} />}
-      {cardType === OfficialProfileCardType && <OfficialProfileCard />}
+      {cardType === OfficialProfileCardType && <OfficialProfileCard ref={profileRef} />}
       <BasicButton type="button" onClick={handleDownload} className="--content-font">
         {TOP_PAGE_TEXT.saveImageButtonLabel}
       </BasicButton>
