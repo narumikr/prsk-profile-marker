@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { ImageUploader } from '@/components/atoms/ImageUploader';
-import { InputForm } from '@/components/atoms/InputForm';
+import { InputForm } from '@/components/molecules/InputForm';
 import { CARD_HEIGHT, CARD_WIDTH, LookAtMyOshiCardText } from '@/constant/cards.constant';
 import { useCardScale } from '@/hooks/useCardScale';
 import { useSekaiColor } from '@/hooks/useSekaiColor';

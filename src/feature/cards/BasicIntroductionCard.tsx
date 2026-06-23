@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import { InputForm } from '@/components/atoms/InputForm';
 import { TextArea } from '@/components/atoms/TextArea';
 import { Gallery } from '@/components/molecules/Gallery';
+import { InputForm } from '@/components/molecules/InputForm';
 import { BasicIntroductionCardText, CARD_HEIGHT, CARD_WIDTH } from '@/constant/cards.constant';
 import { useCardScale } from '@/hooks/useCardScale';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
