@@ -14,7 +14,7 @@ export const InputForm = ({ label }: InputFormProps) => {
         <NamePlate text={label} className="w-48" />
       </div>
       <div className={`rounded border ${border} px-3 pb-3 pt-4`}>
-        <Input label={label} />
+        <Input label={label} className="px-2 py-1" />
       </div>
     </div>
   );

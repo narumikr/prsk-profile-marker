@@ -10,18 +10,17 @@ interface CoordInputProps {
 }
 
 export const CoordInput = ({ x, y, w, h, label, className }: CoordInputProps) => {
-  const temp = 'border border-red-500';
   return (
     <div
-      className={temp}
       style={{
         position: 'absolute',
         left: x,
         top: y,
         width: w,
         height: h,
+        padding: 0,
       }}>
-      <Input label={label} className={className} />
+      <Input label={label} className={`h-full w-full ${className}`} />
     </div>
   );
 };
