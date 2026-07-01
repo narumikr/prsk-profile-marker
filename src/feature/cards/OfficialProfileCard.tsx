@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import officialProfile from '@/assets/official-profile.jpg';
 import { CoordInput } from '@/components/molecules/CoordInput';
+import { CoordTextArea } from '@/components/molecules/CoordTextArea';
 import { OFFICIAL_CARD_HEIGHT, OFFICIAL_CARD_WIDTH, OfficialProfileCardInputLabels } from '@/constant/cards.constant';
 import { useCardScale } from '@/hooks/useCardScale';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
@@ -55,6 +56,15 @@ export const OfficialProfileCard = forwardRef<HTMLDivElement>((_, ref) => {
           className={text}
         />
         <CoordInput x={247} y={598} w={146} h={32} label={OfficialProfileCardInputLabels.withKaraoke} className={text} />
+        {/* FREE SPACE */}
+        <CoordTextArea
+          x={240}
+          y={685}
+          w={335}
+          h={80}
+          label={OfficialProfileCardInputLabels.freeSpace}
+          className={`${text} p-1`}
+        />
       </div>
     </div>
   );

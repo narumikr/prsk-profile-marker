@@ -43,4 +43,5 @@ export const OfficialProfileCardInputLabels = {
   swapBody: '一日入れ替われるとしたら誰',
   withUninhabitedIsland: '無人島に連れて行きたい人は',
   withKaraoke: 'カラオケに行きたい人は',
+  freeSpace: '自由記入欄',
 };
