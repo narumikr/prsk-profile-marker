@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import type { Ref } from 'react';
 import officialProfile from '@/assets/official-profile.jpg';
 import { CoordInput } from '@/components/molecules/CoordInput';
 import { CoordTextArea } from '@/components/molecules/CoordTextArea';
@@ -6,7 +6,11 @@ import { OFFICIAL_CARD_HEIGHT, OFFICIAL_CARD_WIDTH, OfficialProfileCardInputLabe
 import { useCardScale } from '@/hooks/useCardScale';
 import { useSekaiColor } from '@/hooks/useSekaiColor';
 
-export const OfficialProfileCard = forwardRef<HTMLDivElement>((_, ref) => {
+interface OfficialProfileCardProps {
+  ref?: Ref<HTMLDivElement>;
+}
+
+export const OfficialProfileCard = ({ ref }: OfficialProfileCardProps) => {
   const { text } = useSekaiColor();
   const { wrapperRef, scale } = useCardScale(OFFICIAL_CARD_WIDTH);
 
@@ -68,6 +72,4 @@ export const OfficialProfileCard = forwardRef<HTMLDivElement>((_, ref) => {
       </div>
     </div>
   );
-});
-
-OfficialProfileCard.displayName = 'OfficialProfileCard';
+};
